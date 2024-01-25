@@ -1,0 +1,23 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+
+	<div id="content">
+
+		<h3>Tarea
+			{{id}}</h3>
+		<p>{{fecha_creacion|date("d/m/Y")}}
+			-
+			{{titulo|upper}}</p>
+		<div class="cleaner h30"></div>
+		<h3>Descripción</h3>
+		<p>{{descripcion}}
+		</p>
+		<p>Fecha de Vencimiento:
+			{{fecha_vencimiento|date("d/m/Y")}}
+		</p>
+
+		<div class="cleaner"></div>
+
+
+	</div>
+{% endblock %}

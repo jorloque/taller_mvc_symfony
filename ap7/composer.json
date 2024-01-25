@@ -1,0 +1,15 @@
+{
+    "name": "daw2-dwes/mvc-simple",
+    "autoload": {
+        "psr-4": {
+            "app\\" : "src/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.4",
+        "php-di/php-di": "^6.4",
+        "twig/twig": "^3.4",
+        "doctrine/orm": "^2.13",
+        "symfony/cache": "^6.1"
+    }
+}

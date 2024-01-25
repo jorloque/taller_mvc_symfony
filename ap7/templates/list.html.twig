@@ -1,0 +1,80 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+	<div id="content">
+		<div class="cbox_fws">
+			<h3>Lista de tareas</h3>
+			<a href='http://localhost/public/index.php/insert'>[I]</a>
+			<table
+				border='1'>
+				{# Cálculo de valores para la paginación #}
+				{% set elementsPerPage = 10 %}
+				{% set lowerLimit = (page -1) * elementsPerPage + 1 %}
+				{% set upperLimit = page * elementsPerPage %}
+
+				{# List de resultados paginado #}
+				{% for task in data|sort((a, b) => a.getFechaVencimiento() <=> b.getFechaVencimiento()) %}
+					{% if loop.index >= lowerLimit and loop.index <= upperLimit %}
+						<tr>
+							<td>
+								<a href='http://localhost/public/index.php/detail/{{task.id}}'>{{task.titulo}}</a>
+							</td>
+							<td>{{task.getFechaVencimiento()|date("d/m/Y")}}</td>
+							<td>
+								<a href='http://localhost/public/index.php/delete/{{task.id}}'>[X]</a>
+							</td>
+							<td>
+								<a href='http://localhost/public/index.php/update/{{task.id}}'>[U]</a>
+							</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</table>
+			{# Navegador #}
+			{% set totalPages = (((data|length)/elementsPerPage)|round(0, 'ceil')) %}
+			{% if page > 1 %}
+				<a href="http://localhost/public/index.php/list/1">&lt;&lt;</a>
+				<a href="http://localhost/public/index.php/list/{{ page - 1 }}">&lt;</a>
+			{% else %}
+				<span>&lt;&lt;</span>
+				<span>&lt;</span>
+			{% endif %}
+			{% for pageButton in 1..totalPages %}
+				{% if pageButton == page%}
+					<span>{{ pageButton }}</span>
+				{% else %}
+					<a href="http://localhost/public/index.php/list/{{ pageButton }}">{{ pageButton }}</a>
+				{% endif %}
+			{% endfor %}
+			{% if page < totalPages %}
+				<a href="http://localhost/public/index.php/list/{{ page + 1 }}">&gt;</a>
+				<a href="http://localhost/public/index.php/list/{{ totalPages }}">&gt;&gt;</a>
+			{% else %}
+				<span>&gt;</span>
+				<span>&gt;&gt;</span>
+			{% endif %}
+		</div>
+
+		<div class="cbox_last">
+			<h3>Photo Gallery</h3>
+			<ul class="photo_gallery">
+				<li>
+					<a href="#"><img src="../images/templatemo_image_01.jpg" alt="Image 1" class="image_frame"/></a>
+				</li>
+				<li>
+					<a href="#"><img src="../images/templatemo_image_02.jpg" alt="Image 2" class="image_frame"/></a>
+				</li>
+				<li class="rmp">
+					<a href="#"><img src="../images/templatemo_image_03.jpg" alt="Image 3" class="image_frame"/></a>
+				</li>
+			</ul>
+			<div class="cleaner"></div>
+			<p>
+				<a href="#" class="more float_r">
+					<span>&gt;&gt;</span>
+					View All</a>
+			</p>
+
+		</div>
+
+	</div>
+{% endblock %}

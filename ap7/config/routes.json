@@ -1,0 +1,26 @@
+{
+    "/":{
+        "controller": "MainController",
+        "method": "main"
+    },
+    "/list": {
+        "controller": "ListController",
+        "method": "main"
+    },
+    "/detail": {
+        "controller": "DetailController",
+        "method": "main"
+    },
+    "/update": {
+        "controller": "CrudController",
+        "method": "update"
+    },
+    "/delete": {
+        "controller": "CrudController",
+        "method": "delete"
+    },
+    "/insert": {
+        "controller": "CrudController",
+        "method": "insert"
+    }
+}
